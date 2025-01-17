@@ -44,12 +44,16 @@ int main(int argc, char *argv[])
 {
 	// Exemplos de cálculo do MDC
 	
-	Segments segments[] = {{56,98},{48,18},{101,103},{36,60}};
+	Segments segments[] = {{56,98},{48,18},{101,103},{36,60},{12,18},{15,20},{7,5},{21,6}};
    
 	int n = sizeof(segments) / sizeof(segments[0]);
 
 	for (int i = 0; i<n; i++)
 		printf("O MDC de %d e %d eh %d\n", segments[i].a, segments[i].b, mdc(segments[i].a, segments[i].b));
+	
+	for (int i = 0; i<n; i++)
+		printf("O MMC de %d e %d eh %d\n", segments[i].a, segments[i].b, mmc(segments[i].a, segments[i].b));
+
 
 	return 0;
 }
