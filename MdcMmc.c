@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+typedef struct Pair2Segments 
+{
+	int a;
+	int b;
+}Segments;
+
 int mdc(int dividend , int divisor)
 {
 	int rest = dividend % divisor;
@@ -14,18 +20,36 @@ int mdc(int dividend , int divisor)
 	return divisor;
 }
 
+// Função para calcular o MMC de dois números
+int mmc(int a, int b) {
+    int prod = 1; // Produto dos fatores primos
+    int d = 2;    // Divisor inicial
+
+    while (a != 1 || b != 1) {
+        // Enquanto um dos números for divisível por `d`
+        while (a % d == 0 || b % d == 0) {
+            prod *= d; // Multiplica o produto pelo divisor
+            if (a % d == 0)
+                a /= d; // Reduz `a` dividindo por `d`
+            if (b % d == 0)
+                b /= d; // Reduz `b` dividindo por `d`
+        }
+        d++; // Incrementa o divisor
+    }
+
+    return prod; // Retorna o MMC
+}
+
 int main(int argc, char *argv[])
 {
 	// Exemplos de cálculo do MDC
-    int dividendo1 = 56, divisor1 = 98;
-    int dividendo2 = 48, divisor2 = 18;
-    int dividendo3 = 101, divisor3 = 103; // Números primos entre si
-    int dividendo4 = 36, divisor4 = 60;
+	
+	Segments segments[] = {{56,98},{48,18},{101,103},{36,60}};
+   
+	int n = sizeof(segments) / sizeof(segments[0]);
 
-    printf("O MDC de %d e %d eh %d\n", dividendo1, divisor1, mdc(dividendo1, divisor1));
-    printf("O MDC de %d e %d eh %d\n", dividendo2, divisor2, mdc(dividendo2, divisor2));
-    printf("O MDC de %d e %d eh %d\n", dividendo3, divisor3, mdc(dividendo3, divisor3));
-    printf("O MDC de %d e %d eh %d\n", dividendo4, divisor4, mdc(dividendo4, divisor4));
+	for (int i = 0; i<n; i++)
+		printf("O MDC de %d e %d eh %d\n", segments[i].a, segments[i].b, mdc(segments[i].a, segments[i].b));
 
 	return 0;
 }
