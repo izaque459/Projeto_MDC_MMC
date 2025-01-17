@@ -42,7 +42,7 @@ int mmc(int a, int b) {
 
 int main(int argc, char *argv[])
 {
-	// Exemplos de cálculo do MDC
+	// Exemplos de cálculo do MDC e MMC
 	
 	Segments segments[] = {{56,98},{48,18},{101,103},{36,60},{12,18},{15,20},{7,5},{21,6}};
    
@@ -53,6 +53,13 @@ int main(int argc, char *argv[])
 	
 	for (int i = 0; i<n; i++)
 		printf("O MMC de %d e %d eh %d\n", segments[i].a, segments[i].b, mmc(segments[i].a, segments[i].b));
+	// o produto de a e b deverah ser igual ao produto de mdc(a,b) e mmc(a,b)
+	for (int i = 0; i<n; i++)
+		if  ( (mdc(segments[i].a, segments[i].b)*mmc(segments[i].a, segments[i].b))==(segments[i].a*segments[i].b) )
+			printf("\n O o MDC e MMC de %d e %d foram calculados corretamente \n", segments[i].a, segments[i].b);
+		else
+			printf("\n O o MDC e MMC de %d e %d foram calculados incorretamente \n", segments[i].a, segments[i].b);
+
 
 
 	return 0;
